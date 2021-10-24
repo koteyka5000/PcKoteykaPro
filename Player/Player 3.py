@@ -31,10 +31,10 @@ class Hero:
     def __init__(self):
         self.walls = []
         self.obj = canvas.create_oval(10, 10, 25, 25, fill='red')
-        self.x_right = 10
-        self.x_left = -10
-        self.y_up = -10
-        self.y_down = 10
+        self.x_right = 5
+        self.x_left = -5
+        self.y_up = -5
+        self.y_down = 5
         self.hammer = False
 
     def hammer_on(self):
@@ -43,8 +43,8 @@ class Hero:
     def summon_walls(self):
         walls = []
         for i in range(40):
-            x = randint(0, 400)
-            y = randint(0, 400)
+            x = 15 * randint(0, 25)
+            y = 15 * randint(0, 25)
             canvas.create_oval(x, y, x + 15, y + 15, fill='blue')
             walls.append((x, y))  # x + 15, y + 15
         self.walls = walls
@@ -70,6 +70,7 @@ class Hero:
 
 
 hero = Hero()
+
 canvas.bind_all('<KeyPress-d>', hero.move_right)
 canvas.bind_all('<KeyPress-a>', hero.move_left)
 canvas.bind_all('<KeyPress-w>', hero.move_up)
