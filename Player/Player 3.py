@@ -1,3 +1,4 @@
+
 from tkinter import *
 from random import randint
 
@@ -10,8 +11,16 @@ canvas.pack()
 def check_wall(where, self):
     if self.hammer:
         return 1
-    print(self.walls)
-    xy = self.get_coords()  # (x1, y1, x2, y2) PLayer
+    for w in self.walls:
+        wx1 = w[0]
+        wx2 = w[0] + 15
+        wy1 = w[1]
+        wy2 = w[1] + 15
+        sx1, sy1, sx2, sy2 = self.get_coords()  # (x1, y1, x2, y2) PLayer
+
+        if sx2 > wx1 and sx1 < wx2:
+            print('collision x')
+    print('---')
 
     if where == 'w':
         pass
@@ -42,7 +51,7 @@ class Hero:
 
     def summon_walls(self):
         walls = []
-        for i in range(40):
+        for i in range(1):
             x = 15 * randint(0, 25)
             y = 15 * randint(0, 25)
             canvas.create_oval(x, y, x + 15, y + 15, fill='blue')
