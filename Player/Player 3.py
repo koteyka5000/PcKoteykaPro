@@ -18,20 +18,22 @@ def check_wall(where, self):
         wy2 = w[1] + 15
         sx1, sy1, sx2, sy2 = self.get_coords()  # (x1, y1, x2, y2) PLayer
 
-        if sx2 > wx1 and sx1 < wx2:
-            print('collision x')
-    print('---')
+        if where == 'd':
+            if sx2 + 5 > wx1 and sx1 + 5 < wx2 and sy2 > wy1 and sy1 < wy2:
+                return 0
 
-    if where == 'w':
-        pass
-    elif where == 'a':
-        pass
-    elif where == 's':
-        for q, w in self.walls:
-            pass
+        if where == 'w':
+            if sx2 > wx1 and sx1 < wx2 and sy2 - 5 > wy1 and sy1 - 5 < wy2:
+                return 0
 
-    elif where == 'd':
-        pass
+        elif where == 'a':
+            if sx2 - 5 > wx1 and sx1 - 5 < wx2 and sy2 > wy1 and sy1 < wy2:
+                return 0
+
+        elif where == 's':
+            if sx2 > wx1 and sx1 < wx2 and sy2 + 5 > wy1 and sy1 + 5 < wy2:
+                return 0
+        print('---')
 
     return 1
 
@@ -39,7 +41,7 @@ def check_wall(where, self):
 class Hero:
     def __init__(self):
         self.walls = []
-        self.obj = canvas.create_oval(10, 10, 25, 25, fill='red')
+        self.obj = canvas.create_rectangle(10, 10, 25, 25, fill='red')
         self.x_right = 5
         self.x_left = -5
         self.y_up = -5
@@ -54,7 +56,7 @@ class Hero:
         for i in range(1):
             x = 15 * randint(0, 25)
             y = 15 * randint(0, 25)
-            canvas.create_oval(x, y, x + 15, y + 15, fill='blue')
+            canvas.create_rectangle(x, y, x + 15, y + 15, fill='blue')
             walls.append((x, y))  # x + 15, y + 15
         self.walls = walls
 
