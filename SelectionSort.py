@@ -9,3 +9,4 @@ def selectionSort(w):
 
 a = selectionSort([9, 2, 6, 4, 7, 8, 0])
 print(a)
+#
